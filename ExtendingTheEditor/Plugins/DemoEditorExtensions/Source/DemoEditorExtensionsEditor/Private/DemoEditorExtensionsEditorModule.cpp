@@ -87,13 +87,13 @@ void FDemoEditorExtensionsEditorModule::StartupModule()
 	}
 }
 
-void FDemoEditorExtensionsEditorModule::ShutdownModule()
+void FDemoEditorExtensionsEditorModule::ShutdownModule() //Shutdown Module
 {
 	FDemoCommands::Unregister();
 	FDemoStyle::Shutdown();
 }
 
-void FDemoEditorExtensionsEditorModule::TriggerTool(UClass* ToolClass)
+void FDemoEditorExtensionsEditorModule::TriggerTool(UClass* ToolClass) ///Create a Window in common use
 {
 	UBaseEditorTool* ToolInstance = NewObject<UBaseEditorTool>(GetTransientPackage(), ToolClass);
 	ToolInstance->AddToRoot();
@@ -107,7 +107,7 @@ void FDemoEditorExtensionsEditorModule::TriggerTool(UClass* ToolClass)
 	Window->SetOnWindowClosed(FOnWindowClosed::CreateStatic(&FDemoEditorExtensionsEditorModule::OnToolWindowClosed, ToolInstance));
 }
 
-void FDemoEditorExtensionsEditorModule::CreateToolListMenu(class FMenuBuilder& MenuBuilder)
+void FDemoEditorExtensionsEditorModule::CreateToolListMenu(class FMenuBuilder& MenuBuilder) // Register a Menu
 {
 	for (TObjectIterator<UClass> ClassIt; ClassIt; ++ClassIt)
 	{
